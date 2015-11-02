@@ -26,14 +26,15 @@ class DlgHashTool(QDialog):
 
     def initUI(self):
 
-        self.setWindowTitle('SideHash')
+        self.setWindowTitle('Hashsum calculation')
+        self.setMinimumWidth(420)
 
         grid = QGridLayout()
         grid.setColumnStretch(0,0)
         grid.setColumnStretch(1,1)
         self.setLayout(grid)
 
-        grid.addWidget(QLabel(u"Datei", self),0,0)
+        grid.addWidget(QLabel(u"File", self),0,0)
         row1 = QHBoxLayout()
         row1.setStretch(0,1)
         row1.setStretch(1,0)
@@ -44,11 +45,12 @@ class DlgHashTool(QDialog):
         row1.addWidget(self.btnInputFile)
         grid.addLayout(row1,0,1)
 
-        grid.addWidget(QLabel(u"Prüfsumme", self),1,0)
+        grid.addWidget(QLabel(u"Checksum", self),1,0)
         row2 = QHBoxLayout()
         self.cmbMethod = QComboBox(self)
-        self.cmbMethod.addItems(hashlib_algorithms)
-        self.cmbMethod.setMaximumSize(QSize(60,28))
+        self.cmbMethod.addItems([str(a).upper() for a in hashlib_algorithms])
+        self.cmbMethod.setMaximumSize(QSize(72,28))
+        self.cmbMethod.setCurrentIndex(hashlib_algorithms.index("sha1"))
         row2.addWidget(self.cmbMethod)
         self.labelResult = QLabel("", self)
         self.labelResult.setAlignment(Qt.AlignRight|Qt.AlignVCenter)
@@ -56,7 +58,7 @@ class DlgHashTool(QDialog):
         row2.addWidget(self.labelResult)
         grid.addLayout(row2,1,1)
 
-        grid.addWidget(QLabel(u"Erwartet", self),2,0)
+        grid.addWidget(QLabel(u"Compare", self),2,0)
         row3 = QHBoxLayout()
         self.leProvidedHashSum = QLineEdit(self)
         self.leProvidedHashSum.setAlignment(Qt.AlignRight|Qt.AlignVCenter)
@@ -66,7 +68,7 @@ class DlgHashTool(QDialog):
         row3.addWidget(self.leProvidedHashSum)
         grid.addLayout(row3,2,1)
 
-        grid.addWidget(QLabel(u"Vergleich", self),3,0)
+        grid.addWidget(QLabel(u"Result", self),3,0)
         self.labelCompareResult = QLabel("", self)
         self.labelCompareResult.setAutoFillBackground(True)
         self.labelCompareResult.setAlignment(Qt.AlignCenter)
