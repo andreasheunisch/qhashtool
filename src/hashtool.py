@@ -7,7 +7,7 @@ from PySide.QtCore import *
 
 def calculateFileHash(fname, algorithm='md5'):
     m = hashlib_new(algorithm)
-    fobj = open(fname, 'r')
+    fobj = open(fname, 'rb')
     while True:
         d = fobj.read(8096)
         if not d:
