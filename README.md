@@ -1,5 +1,5 @@
 # qhashtool
-yet another graphical hashsum tool
+yet another graphical user interface hashsum tool
 
 Select a local file and calculate hash in order to check integrity of downloaded file.
 
